@@ -65,11 +65,11 @@ private String cumpleanos;
     }
 @Override
     public String toString() {
-    return "Contacto == " +
-            "Nombre: " + nombre + ", " +
-            "Numero telefonico: " + telefono + ", " +
-            "Correo electronico: " + correo + ", " +
-            "Direccion: " + direccion + ", " +
+    return "> " +
+            "Nombre: " + nombre + " | " +
+            "Numero telefonico: " + telefono + " | " +
+            "Correo: " + correo + " | " +
+            "Direccion: " + direccion + " | " +
             "Cumpleanos: " + cumpleanos;
     }
     

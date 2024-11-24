@@ -16,46 +16,49 @@ public class AgendaContactos {
     public static void main(String[] args) {
         // TODO code application logic here
         Scanner read = new Scanner(System.in);
-        Contacto contacto = null;  
+        Contacto contacto = null; 
+        Agenda agenda = new Agenda(100); // Crea una agenda con capacidad para 100 contactos
         int opcion = 0;
         
+        //contactos de ejemplo
+        agenda.agregarContacto(new Contacto("Juan Perez", "1234567890", "juan.perez@unitec.edu", "Calle Falsa 123", "15/05/2000"));
+        agenda.agregarContacto(new Contacto("Maria Lopez", "0987654321", "maria.lopez@unitec.edu", "Avenida Siempre Viva 456", "20/10/2004"));
+        agenda.agregarContacto(new Contacto("Carlos Ruiz", "5556667777", "carlos.ruiz@unitec.edu", "Boulevard Morazan 789", "01/01/2004"));
+        
         while (opcion != 5){
-            System.out.println("--- Menu Contacto ---");
-            System.out.println("1. Crear  contacto");
-            System.out.println("2. Mostrar contacto");
-            System.out.println("3. Actualizar numero telefonico del contacto ");
-            System.out.println("4. Verificar si  el contacto cumpleanos hoy"); 
-            System.out.println("5. Salir del menu contacto");
+            System.out.println("==== Agenda de Contactos ====");
+            System.out.println("1) Crear contacto");
+            System.out.println("2) Mostrar contactos");
+            System.out.println("3) Actualizar numero telefonico del contacto ");
+            System.out.println("4) Verificar si el contacto cumpleanos hoy"); 
+            System.out.println("5) Salir");
             opcion = read.nextInt();
             read.nextLine();
             
             switch (opcion){
                 case 1: 
                     System.out.println("INGRESAR INFORMACION DEL CONTACTO");
-                    System.out.println("Nombre:");
+                    System.out.print("> Nombre: ");
                     String nombre = read.nextLine();
-                    System.out.println("Numero telefonico:");
+                    System.out.print("> Numero telefonico: ");
                     String telefono = read.nextLine();
-                    System.out.println("Correo electronico:");
+                    System.out.print("> Correo electronico: ");
                     String correo = read.nextLine();
-                    System.out.println("Direccion:");
+                    System.out.print("> Direccion: ");
                     String direccion = read.nextLine();
-                    System.out.println("Cumpleanos (dia/mes/anio)");
+                    System.out.print("> Cumpleanos (dia/mes/anio): ");
                     String cumpleanos = read.nextLine();
-                    
-                    contacto = new Contacto (nombre, telefono, correo, direccion, cumpleanos);
+
+                    contacto = new Contacto(nombre, telefono, correo, direccion, cumpleanos);
+                    agenda.agregarContacto(contacto); // agregar contacto
                     System.out.println("Se ha creado el contacto");
                     break;
                     
                 case 2:
-                    if (contacto != null){
-                     System.out.println(contacto);   
-                    } else {
-                        System.out.println("No tienes contactos creados");
-                    }
+                  agenda.mostrarContactos();
                     break;
 
-                case 3: // solicita cambiar numero telefonico
+                case 3: 
                 if (contacto != null) {
                     System.out.println("Ingrese el nuevo numero telefonico:");
                     String nuevoTelefono = read.nextLine();
