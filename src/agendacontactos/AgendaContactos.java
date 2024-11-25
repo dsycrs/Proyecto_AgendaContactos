@@ -17,7 +17,8 @@ public class AgendaContactos {
         // TODO code application logic here
         Scanner read = new Scanner(System.in);
         Contacto contacto = null; 
-        Agenda agenda = new Agenda(100); // Crea una agenda con capacidad para 100 contactos
+        Agenda agenda = new Agenda(100);
+        boolean bandera = true;
         int opcion = 0;
         
         //contactos de ejemplo
@@ -25,13 +26,14 @@ public class AgendaContactos {
         agenda.agregarContacto(new Contacto("Maria Lopez", "0987654321", "maria.lopez@unitec.edu", "Avenida Siempre Viva 456", "20/10/2004"));
         agenda.agregarContacto(new Contacto("Carlos Ruiz", "5556667777", "carlos.ruiz@unitec.edu", "Boulevard Morazan 789", "01/01/2004"));
         
-        while (opcion != 5){
+        while (bandera){
             System.out.println("==== Agenda de Contactos ====");
             System.out.println("1) Crear contacto");
             System.out.println("2) Mostrar contactos");
             System.out.println("3) Actualizar numero telefonico del contacto ");
-            System.out.println("4) Verificar si el contacto cumpleanos hoy"); 
-            System.out.println("5) Salir");
+            System.out.println("4) Verificar si el contacto cumpleanos hoy");
+            System.out.println("5) Eliminar contacto");
+            System.out.println("6) Salir");
             opcion = read.nextInt();
             read.nextLine();
             
@@ -84,11 +86,22 @@ public class AgendaContactos {
                     System.out.println("No tienes contactos creados");
                 }
                 break;
-                case 5:
+                
+                case 5: //para eliminar un contacto
+                    System.out.print("Ingrese el nombre del contacto a eliminar: ");
+                    String nombreEliminar = read.nextLine();
+                    if (agenda.eliminarContacto(nombreEliminar)) {
+                        System.out.println("El Contacto fue eliminado");
+                    } else {
+                        System.out.println("No se encontro el contacto.");
+                    }
+                    break;
+                
+                case 6:
                     break;
                 default:
                     System.out.println("La opcion no es valida");
-                    break;
+                    bandera = false;
             }
         }
     }

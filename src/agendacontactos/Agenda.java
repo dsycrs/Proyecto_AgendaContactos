@@ -40,4 +40,23 @@ public class Agenda {
             System.out.println(contactos[i]); // Imprime
         }
     }
+    
+    //para eliminar contacto por nombre completo
+    public boolean eliminarContacto(String nombre) {
+    for (int i = 0; i < contador; i++) {
+        if (contactos[i].getNombre().equals(nombre)) {
+            //desplaza los contactos
+            for (int j = i; j < contador - 1; j++) {
+                contactos[j] = contactos[j + 1];
+            }
+            contactos[contador - 1] = null;
+            contador--; 
+            return true;
+        }
+    }
+    System.out.println("Contacto no encontrado.");
+    return false; // 
+}
+    
+    
 }
